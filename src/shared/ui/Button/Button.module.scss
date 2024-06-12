@@ -1,0 +1,29 @@
+.Button {
+  padding: 5px 10px;
+  cursor: pointer;
+
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  background-color: var(--bg-color);
+
+  transition: 0.4s;
+
+  &:hover {
+    opacity: 0.8;
+    fill-opacity: 0.8;
+    stroke-opacity: 0.8;
+    scale: 1.02;
+  }
+}
+
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: auto;
+}
+
+.active {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}

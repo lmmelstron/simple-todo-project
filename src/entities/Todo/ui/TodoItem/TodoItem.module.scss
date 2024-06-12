@@ -1,0 +1,21 @@
+.TodoItem {
+  display: flex;
+  width: 100%;
+  padding: 10px 20px;
+
+  background-color: var(--card-bg);
+
+  cursor: pointer;
+
+  align-items: center;
+
+  &.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+}
+
+.marker {
+  margin-right: 10px;
+  opacity: 0.6;
+}

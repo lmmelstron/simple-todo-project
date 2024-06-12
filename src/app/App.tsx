@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-// import { TodoPage } from "../pages/TodoPage";
+import { TodoPage } from "../pages/TodoPage";
 
 import { injectStores } from "@mobx-devtools/tools";
 import { store } from "./providers/StoreProvider";
@@ -11,7 +11,9 @@ injectStores({
 function App() {
   return (
     <div className="app">
-      <Suspense fallback={<div>loading..</div>}>{/* <TodoPage /> */}</Suspense>
+      <Suspense fallback={<div>loading..</div>}>
+        <TodoPage />
+      </Suspense>
     </div>
   );
 }

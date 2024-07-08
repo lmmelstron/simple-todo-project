@@ -4,7 +4,11 @@ import { describe, expect, it } from "vitest";
 
 describe("TodoItem tests", () => {
   it("new todo", () => {
-    render(<TodoItem completed={false}>Issue</TodoItem>);
+    render(
+      <TodoItem id="1" completed={false}>
+        Issue
+      </TodoItem>
+    );
 
     const item = screen.getByTestId("todo-item");
     expect(item).toBeInTheDocument();
@@ -14,7 +18,11 @@ describe("TodoItem tests", () => {
   });
 
   it("completed todo", () => {
-    render(<TodoItem completed={true}>Issue</TodoItem>);
+    render(
+      <TodoItem id="1" completed={true}>
+        Issue
+      </TodoItem>
+    );
 
     const item = screen.getByTestId("todo-item");
     expect(item).toHaveClass(/completed/);

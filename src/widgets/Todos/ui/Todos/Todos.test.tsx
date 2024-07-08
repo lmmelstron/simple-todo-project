@@ -31,6 +31,7 @@ describe("Todos tests", () => {
     const todoStore = new TodosStore();
     const { getByTestId } = renderWithStore(todoStore);
     const input = getByTestId("add-todo-input");
+    expect(getByTestId("count")).toHaveTextContent(/0/);
     expect(input).toHaveValue("");
     const value = "1st todo";
     fireEvent.change(input, {
@@ -52,10 +53,19 @@ describe("Todos tests", () => {
 
     expect(getAllByTestId("todo-item").length).toBe(5);
 
-    fireEvent.click(getByTestId("filter-FINISHED"));
+    fireEvent.click(getByTestId("filter-COMPLETED"));
     expect(getAllByTestId("todo-item").length).toBe(2);
 
     fireEvent.click(getByTestId("filter-ACTIVE"));
+    expect(getAllByTestId("todo-item").length).toBe(3);
+  });
+
+  it("clear completed todos", () => {
+    const todoStore = new TodosStore(exampleTodos);
+    const { getByTestId, getAllByTestId } = renderWithStore(todoStore);
+
+    expect(getAllByTestId("todo-item").length).toBe(5);
+    fireEvent.click(getByTestId("btn-clear"));
     expect(getAllByTestId("todo-item").length).toBe(3);
   });
 });

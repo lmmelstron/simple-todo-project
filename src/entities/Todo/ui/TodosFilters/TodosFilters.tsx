@@ -9,10 +9,11 @@ interface ITodosFiltersProps {
   count?: number;
   filter: TodoStatus;
   onChangeFilter?: (filter: TodoStatus) => void;
+  clearCompleted?: () => void;
 }
 
 export const TodosFilters = memo((props: ITodosFiltersProps) => {
-  const { className, count, filter, onChangeFilter } = props;
+  const { className, count, filter, onChangeFilter, clearCompleted } = props;
 
   const clickHandle = useCallback(
     (value: TodoStatus) => () => onChangeFilter?.(value),
@@ -42,6 +43,9 @@ export const TodosFilters = memo((props: ITodosFiltersProps) => {
     <section className={classNames(cls.TodosFilters, [className])}>
       <span data-testid="count">Tasks left: {count}</span>
       {filterBtns}
+      <Button data-testid="btn-clear" onClick={clearCompleted}>
+        Clear completed
+      </Button>
     </section>
   );
 });

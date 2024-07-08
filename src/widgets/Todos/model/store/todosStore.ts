@@ -10,7 +10,7 @@ export class TodosStore {
     if (todos) this.todos = todos;
   }
 
-  get unfinishedTodosCount() {
+  get activeTodosCount() {
     return this.todos.filter((todo) => !todo.completed).length;
   }
 
@@ -21,7 +21,7 @@ export class TodosStore {
           return true;
         case TodoStatus.ACTIVE:
           return !todo.completed;
-        case TodoStatus.FINISHED:
+        case TodoStatus.COMPLETED:
           return !!todo.completed;
         default:
           return false;
@@ -38,12 +38,16 @@ export class TodosStore {
     this.todos.push(newTodo);
   };
 
-  toggleStatus = (todo: ITodo) => {
-    const index = this.todos.indexOf(todo);
+  toggleStatus = (id: string) => {
+    const index = this.todos.findIndex((todo) => todo.id === id);
     this.todos[index].completed = !this.todos[index].completed;
   };
 
   changeFilter = (value: TodoStatus) => {
     this.filter = value;
+  };
+
+  clearCompleted = () => {
+    this.todos = this.todos.filter((todo) => !todo.completed);
   };
 }

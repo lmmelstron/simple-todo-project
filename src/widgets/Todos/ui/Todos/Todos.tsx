@@ -9,9 +9,10 @@ export const Todos = observer(() => {
   const {
     filter,
     changeFilter,
+    clearCompleted,
     toggleStatus,
     displayedTodos,
-    unfinishedTodosCount,
+    activeTodosCount,
     addTodo,
   } = todosStore;
 
@@ -21,9 +22,10 @@ export const Todos = observer(() => {
       <TodoList todos={displayedTodos} onTodoClick={toggleStatus} />
       <TodosFilters
         className={cls.filters}
-        count={unfinishedTodosCount}
+        count={activeTodosCount}
         filter={filter}
         onChangeFilter={changeFilter}
+        clearCompleted={clearCompleted}
       />
     </article>
   );

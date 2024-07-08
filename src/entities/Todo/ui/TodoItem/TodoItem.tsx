@@ -1,4 +1,4 @@
-import { ReactNode, memo } from "react";
+import { memo, ReactNode, useCallback } from "react";
 import cls from "./TodoItem.module.scss";
 import classNames from "classnames";
 import { Icon } from "@shared/ui/Icon/Icon";
@@ -8,17 +8,21 @@ import CircleCheckIcon from "@shared/assets/icons/circle-check-20-20.svg";
 
 interface ITodoItemProps {
   className?: string;
-  children?: ReactNode;
+  id: string;
   completed: boolean;
-  onClick?: () => void;
+  children: ReactNode;
+  onClick?: (id: string) => void;
 }
 
 export const TodoItem = memo((props: ITodoItemProps) => {
-  const { className, children, completed, onClick } = props;
+  const { className, id, children, completed, onClick } = props;
+
+  const handleClick = useCallback(() => onClick?.(id), [id, onClick]);
+
   return (
     <li
       data-testid="todo-item"
-      onClick={onClick}
+      onClick={handleClick}
       className={classNames(
         cls.TodoItem,
         [className],
@@ -31,7 +35,7 @@ export const TodoItem = memo((props: ITodoItemProps) => {
       />
       <span
         data-testid="todo-item-text"
-        // className={classNames(completed && cls.finished)}
+        // className={classNames(completed && cls.COMPLETED)}
       >
         {children}
       </span>

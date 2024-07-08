@@ -2,7 +2,7 @@ import { ITodo } from "../model/types/todo";
 
 export enum TodoStatus {
   "ALL" = "ALL",
-  "FINISHED" = "FINISHED",
+  "COMPLETED" = "COMPLETED",
   "ACTIVE" = "ACTIVE",
 }
 

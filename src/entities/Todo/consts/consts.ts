@@ -1,9 +1,9 @@
 import { ITodo } from "../model/types/todo";
 
 export enum TodoStatus {
-  "ALL" = "ALL",
-  "COMPLETED" = "COMPLETED",
-  "ACTIVE" = "ACTIVE",
+  "ALL" = "All",
+  "COMPLETED" = "Completed",
+  "ACTIVE" = "Active",
 }
 
 export const exampleTodos: ITodo[] = [

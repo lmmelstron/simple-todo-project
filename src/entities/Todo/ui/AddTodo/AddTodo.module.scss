@@ -1,10 +1,12 @@
 .AddTodo {
   display: flex;
   align-items: center;
-  gap: 5px;
-}
+  gap: 10px;
+  border-bottom: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+  padding: var(--card-child-padding);
 
-.addTodoBtn {
-  min-width: 150px;
-  max-width: 25vw;
+  svg {
+    fill: var(--secondary-color);
+  }
 }

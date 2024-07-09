@@ -1,0 +1,16 @@
+.TodosFilters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: var(--font-size-s);
+  line-height: var(--font-line-s);
+  letter-spacing: 0.3px;
+
+  padding: var(--card-child-padding);
+}
+
+.Filters {
+  display: flex;
+  gap: 3px;
+}

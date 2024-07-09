@@ -1,8 +1,10 @@
-import { memo, useCallback, useState } from "react";
+import { memo } from "react";
 import cls from "./AddTodo.module.scss";
 import { Input } from "@shared/ui/Input/Input";
 import classNames from "classnames";
-import { Button } from "@shared/ui/Button/Button";
+
+import ChevronIcon from "@shared/assets/icons/chevron-down.svg";
+import { Icon } from "@shared/ui/Icon/Icon";
 
 interface IAddTodoProps {
   className?: string;
@@ -11,28 +13,15 @@ interface IAddTodoProps {
 
 export const AddTodo = memo((props: IAddTodoProps) => {
   const { className, addTodo } = props;
-  const [name, setName] = useState<string>("");
-
-  const handleAddTodo = useCallback(() => {
-    addTodo(name);
-    setName("");
-  }, [addTodo, name]);
 
   return (
-    <section className={classNames(cls.AddTodo, {}, [className])}>
+    <section className={classNames(cls.AddTodo, className)}>
+      <Icon Svg={ChevronIcon} />
       <Input
         placeholder="Input new todo.."
-        value={name}
-        onChange={setName}
         data-testid="add-todo-input"
+        onSubmit={addTodo}
       />
-      <Button
-        onClick={handleAddTodo}
-        className={cls.addTodoBtn}
-        data-testid="add-todo-btn"
-      >
-        Add
-      </Button>
     </section>
   );
 });

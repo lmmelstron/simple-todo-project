@@ -1,11 +1,11 @@
 .Button {
-  padding: 5px 10px;
+  padding: 1px 3px;
   cursor: pointer;
 
   color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  border-radius: 4px;
-  background-color: var(--bg-color);
+  border-radius: 2px;
+  background: none;
+  border: none;
 
   transition: 0.4s;
 
@@ -18,12 +18,10 @@
 }
 
 .disabled {
-  opacity: 0.6;
   pointer-events: none;
   cursor: auto;
 }
 
 .active {
-  background-color: var(--primary-color);
-  color: var(--bg-color);
+  border: 1px solid var(--tetriary-color);
 }

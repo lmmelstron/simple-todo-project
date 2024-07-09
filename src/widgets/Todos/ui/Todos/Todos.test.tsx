@@ -1,9 +1,10 @@
 import { fireEvent, render } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { Todos } from "./Todos";
 import { TodosStore } from "@widgets/Todos/model/store/todosStore";
 import { StoreContext } from "@app/providers/StoreProvider";
-import { exampleTodos } from "@entities/Todo";
+import { exampleTodos, TodoStatus } from "@entities/Todo";
 
 const renderWithStore = (todoStore: TodosStore) =>
   render(
@@ -23,11 +24,12 @@ describe("Todos tests", () => {
 
     expect(getByTestId("add-todo-input")).toHaveValue("");
 
-    const filterALL = getByTestId("filter-ALL");
+    const filterALL = getByTestId(`filter-${TodoStatus.ALL}`);
     expect(filterALL).toHaveClass(/active/);
   });
 
-  it("add todo", () => {
+  it("add todo", async () => {
+    const user = userEvent.setup();
     const todoStore = new TodosStore();
     const { getByTestId } = renderWithStore(todoStore);
     const input = getByTestId("add-todo-input");
@@ -40,7 +42,7 @@ describe("Todos tests", () => {
       },
     });
     expect(input).toHaveValue(value);
-    fireEvent.click(getByTestId("add-todo-btn"));
+    await user.keyboard("{Enter}");
 
     expect(getByTestId("todo-item")).toBeInTheDocument();
     expect(getByTestId("todo-item-text")).toHaveTextContent(value);
@@ -53,10 +55,10 @@ describe("Todos tests", () => {
 
     expect(getAllByTestId("todo-item").length).toBe(5);
 
-    fireEvent.click(getByTestId("filter-COMPLETED"));
+    fireEvent.click(getByTestId(`filter-${TodoStatus.COMPLETED}`));
     expect(getAllByTestId("todo-item").length).toBe(2);
 
-    fireEvent.click(getByTestId("filter-ACTIVE"));
+    fireEvent.click(getByTestId(`filter-${TodoStatus.ACTIVE}`));
     expect(getAllByTestId("todo-item").length).toBe(3);
   });
 

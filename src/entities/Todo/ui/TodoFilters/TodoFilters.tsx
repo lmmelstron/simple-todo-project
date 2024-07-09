@@ -1,10 +1,11 @@
-import { memo, useCallback, useMemo } from "react";
+import { memo } from "react";
 import classNames from "classnames";
 import { TodoStatus, TodoStatusFilters } from "@entities/Todo";
 import { Button } from "@shared/ui/Button/Button";
 import cls from "./TodoFilters.module.scss";
+import { TodosFiltersBtn } from "../TodoFiltersBtn/TodoFiltersBtn";
 
-interface ITodosFiltersProps {
+interface ITodoFiltersProps {
   className?: string;
   count?: number;
   filter: TodoStatus;
@@ -12,37 +13,24 @@ interface ITodosFiltersProps {
   clearCompleted?: () => void;
 }
 
-export const TodosFilters = memo((props: ITodosFiltersProps) => {
+export const TodoFilters = memo((props: ITodoFiltersProps) => {
   const { className, count, filter, onChangeFilter, clearCompleted } = props;
-
-  const clickHandle = useCallback(
-    (value: TodoStatus) => () => onChangeFilter?.(value),
-    [onChangeFilter]
-  );
-
-  const filterBtns = useMemo(
-    () => (
-      <div className={cls.Filters}>
-        {TodoStatusFilters.map((option) => (
-          <Button
-            data-testid={`filter-${option}`}
-            key={option}
-            onClick={clickHandle(option)}
-            disabled={option === filter}
-            active={option === filter}
-          >
-            {option}
-          </Button>
-        ))}
-      </div>
-    ),
-    [clickHandle, filter]
-  );
 
   return (
     <section className={classNames(cls.TodosFilters, [className])}>
-      <span data-testid="count">Tasks left: {count}</span>
-      {filterBtns}
+      <span data-testid="count">{count} tasks left</span>
+      <div className={cls.Filters}>
+        {TodoStatusFilters.map((option) => (
+          <TodosFiltersBtn
+            dataTestid={`filter-${option}`}
+            key={option}
+            onFilterChange={onChangeFilter}
+            disabled={option === filter}
+            active={option === filter}
+            option={option}
+          />
+        ))}
+      </div>
       <Button data-testid="btn-clear" onClick={clearCompleted}>
         Clear completed
       </Button>

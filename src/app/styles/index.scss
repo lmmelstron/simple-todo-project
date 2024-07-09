@@ -9,11 +9,12 @@ body {
 }
 
 .app {
-  background: var(--bg-color);
-  min-height: 100vh;
+  display: flex;
+  justify-content: center;
 
-  max-width: 1280px;
-  margin: 0 auto;
+  background: var(--bg-color);
+  height: 100vh;
+  width: 100vw;
   padding: 2rem;
   text-align: center;
 }

@@ -34,6 +34,7 @@ export const TodoItem = memo((props: ITodoItemProps) => {
         Svg={completed ? CircleCheckIcon : CircleIcon}
       />
       <span
+        className={cls.name}
         data-testid="todo-item-text"
         // className={classNames(completed && cls.COMPLETED)}
       >

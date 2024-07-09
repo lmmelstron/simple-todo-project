@@ -1,8 +1,8 @@
 # Simple todo app
 
-Simple porject that uses required libraries and my understanding of them. SPA allows you to add todos, change their status and filter them by it.
+Simple porject that uses required libraries and my understanding of them. SPA allows you to add todos, change their status, filter them by it and clear completed.
 
-No persistance, editing or clearing completed todos (might add later..)
+No persistance, editing (might add later..)
 
 ## Libs
 

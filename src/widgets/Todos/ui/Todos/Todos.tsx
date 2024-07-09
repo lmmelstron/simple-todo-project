@@ -1,6 +1,6 @@
 import cls from "./Todos.module.scss";
 import classNames from "classnames";
-import { AddTodo, TodoList, TodosFilters } from "@entities/Todo";
+import { AddTodo, TodoList, TodoFilters } from "@entities/Todo";
 import { observer } from "mobx-react";
 import { useStore } from "@app/providers/StoreProvider";
 
@@ -20,7 +20,7 @@ export const Todos = observer(() => {
     <article className={classNames(cls.Todos)}>
       <AddTodo addTodo={addTodo} />
       <TodoList todos={displayedTodos} onTodoClick={toggleStatus} />
-      <TodosFilters
+      <TodoFilters
         className={cls.filters}
         count={activeTodosCount}
         filter={filter}
